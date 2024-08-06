@@ -1,41 +1,23 @@
 <template>
-    <div class="product-list">
-      <div v-for="product in products" :key="product.id" class="product-card">
-        <img :src="product.image" :alt="product.title" class="product-image" />
-        <h2>{{ product.title }}</h2>
-        <p>\${{ product.price }}</p>
+    <div class="grid justify-center">
+      <div class="max-w-7xl w-full mx-auto grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-4">
+        <ProductCard v-for="product in products" :key="product.id" :product="product" />
       </div>
     </div>
   </template>
   
   <script>
-  import { useProducts } from '../composables/useProducts';
+  import ProductCard from "@/components/ProductCard.vue";
   
   export default {
-    setup() {
-      const { products } = useProducts();
-      return {
-        products,
-      };
+    components: {
+      ProductCard,
+    },
+    props: {
+      products: {
+        type: Array,
+        required: true,
+      },
     },
   };
   </script>
-  
-  <style scoped>
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .product-card {
-    border: 1px solid #ddd;
-    padding: 16px;
-    width: calc(25% - 32px);
-    box-sizing: border-box;
-  }
-  .product-image {
-    max-width: 100%;
-    height: auto;
-  }
-  </style>
-  
