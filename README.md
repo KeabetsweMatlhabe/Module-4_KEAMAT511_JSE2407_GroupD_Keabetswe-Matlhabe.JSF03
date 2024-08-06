@@ -1,4 +1,5 @@
-**SwiftCart**
+***SwiftCart***
+
 SwiftCart is a modern e-commerce web application built with Vue.js. It offers a seamless shopping experience with features such as product filtering, sorting, and detailed product views.
 
 **Project Description**
