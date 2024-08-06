@@ -15,17 +15,27 @@
 </template>
 
 <script>
-import { useProductStore } from '../composables/useProducts';
+import { ref, watch } from 'vue';
 
 export default {
-  setup() {
-    const { sorting, setSorting } = useProductStore();
+  props: {
+    initialSort: {
+      type: String,
+      default: 'default',
+    },
+  },
+  setup(_, { emit }) {
+    const sorting = ref('default');
+
+    watch(sorting, (newValue) => {
+      emit('sort', newValue);
+    });
 
     const handleSort = (event) => {
-      setSorting(event.target.value);
+      sorting.value = event.target.value;
     };
 
     return { sorting, handleSort };
-  }
+  },
 };
 </script>
